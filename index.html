@@ -3,169 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Dev</title>
-    <style>
-        body {
-            background-image: url('seu-fundo.jpg');
-            background-size: cover;
-            background-position: center;
-            font-family: 'Arial', sans-serif;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            text-align: center;
-            padding: 50px;
-        }
-
-        section {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            margin-top: 50px;
-        }
-
-        h1, h2 {
-            color: #fff;
-        }
-
-        p {
-            line-height: 1.6;
-        }
-
-        /* Estilo para botões de redes sociais */
-        .social-buttons {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-        }
-
-        .social-buttons a {
-            text-decoration: none;
-            color: #fff;
-            border-radius: 50%;
-            overflow: hidden;
-            transition: transform 0.3s ease-in-out;
-            width: 40px;
-            height: 40px;
-        }
-
-        .social-buttons a:hover {
-            transform: scale(1.2);
-        }
-
-        .youtube {
-            background-color: #ff0000; /* Cor do YouTube */
-        }
-
-        .discord {
-            background-color: #7289DA; /* Cor do Discord */
-            cursor: pointer;
-            border-radius: 50%; /* Adiciona a borda redonda */
-        }
-
-        .discord img {
-            border-radius: 50%; /* Adiciona a borda redonda para a imagem */
-        }
-
-        .itchio {
-            background-color: #fa5c5c; /* Cor do itch.io */
-        }
-
-        /* Modal do Discord */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.7);
-        }
-
-        .modal-content {
-            background-color: #494c4e;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 400px;
-            text-align: center;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <title>Rice</title>
 </head>
 <body>
-
-    <header>
-        <h1>Rice...</h1>
-        <h2>Desenvolvedor de Jogos Indie</h2>
-    </header>
-
-    <section>
-        <h1>Seção de Desenvolvimento de Jogos</h1>
-        <p>Olá! Bem-vindo ao meu site de desenvolvimento de jogos. Meu nome é Rice e sou um apaixonado desenvolvedor de jogos indie.</p>
-        <p>Neste espaço, compartilho meus projetos, experiências e novidades sobre o mundo dos jogos que estou criando. Sinta-se à vontade para explorar, Posto alguns videos no Youtube entre lá para ficar Atualizado.</p>
-                       <p>                                        Minhas Redes:</p>
-
-        <!-- Botões de Redes Sociais -->
-        <div class="social-buttons">
-            <!-- Botão do YouTube -->
-            <a href="https://www.youtube.com/seucanal" class="youtube" target="_blank">
-                <img src="youtube-icon.png" alt="YouTube" width="40" height="40">
-            </a>
-
-            <!-- Botão do Discord (com modal) -->
-            <div class="discord" onclick="mostrarDiscordModal()">
-                <img src="discord-icon.png" alt="Discord" width="40" height="40">
-            </div>
-
-            <!-- Link para a página do itch.io -->
-            <a href="https://ricethedev.itch.io/" class="itchio" target="_blank">
-                <img src="itchio-icon.png" alt="itch.io" width="40" height="40">
-            </a>
-        </div>
-
-        <!-- Modal do Discord -->
-        <div id="discordModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="fecharDiscordModal()">&times;</span>
-                <p>Discord: @ricenoba</p>
+    <div class="container">
+        <div class="profile-box">
+            <img src="sua-foto.jpg" alt="Imagem de Perfil">
+            <div class="info-box">
+                <h1>Rice</h1>
             </div>
         </div>
-    </section>
-
-    <!-- Scripts para os modais -->
-    <script>
-        function mostrarDiscordModal() {
-            document.getElementById('discordModal').style.display = 'block';
-        }
-
-        function fecharDiscordModal() {
-            document.getElementById('discordModal').style.display = 'none';
-        }
-    </script>
-
+        <div class="social-box">
+            <a href="https://twitter.com/riccenoob" target="_blank" class="rounded-icon">
+                <img src="twitter-icon.png" alt="Twitter">
+            </a>
+            <a href="https://ricethedev.itch.io" target="_blank" class="rounded-icon">
+                <img src="itch-io-icon.png" alt="Itch.io">
+            </a>
+            <a href="https://github.com/ricethedev" target="_blank" class="rounded-icon">
+                <img src="github-icon.png" alt="GitHub">
+            </a>
+            <a href="https://solo.to/ricethedev" target="_blank" class="rounded-icon">
+                <img src="solo-to-icon.png" alt="Solo.to">
+            </a>
+            <a href="https://www.youtube.com/@ricenoob" target="_blank" class="rounded-icon">
+                <img src="youtube-icon.png" alt="YouTube">
+            </a>
+            <a href="https://discord.gg/" target="_blank" class="rounded-icon">
+                <img src="discord-icon.png" alt="Discord">
+            </a>
+        </div>
+        <div class="animated-clock"></div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
