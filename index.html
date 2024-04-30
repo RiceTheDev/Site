@@ -1,1 +1,184 @@
-<!DOCTYPE html><html lang=en><meta charset=UTF-8><meta content="width=device-width,initial-scale=1"name=viewport><link href=styles.css rel=stylesheet><title>Rice</title><style>.bmac-container{position:fixed;bottom:10px;left:10px;z-index:999}</style><div class=container><div class=profile-box><img src=sua-foto.jpg alt="Imagem de Perfil"><div class=info-box><h1>Rice</h1></div></div><div class=social-box><a href=https://twitter.com/riccenoob class=rounded-icon target=_blank><img src=twitter-icon.png alt=Twitter></a><a href=https://ricethedev.itch.io class=rounded-icon target=_blank><img src=itch-io-icon.png alt=Itch.io></a><a href=https://github.com/ricethedev class=rounded-icon target=_blank><img src=github-icon.png alt=GitHub></a><a href=https://solo.to/ricethedev class=rounded-icon target=_blank><img src=solo-to-icon.png alt=Solo.to></a><a href=https://www.youtube.com/@ricenoob class=rounded-icon target=_blank><img src=youtube-icon.png alt=YouTube></a><a href=https://discord.gg/ class=rounded-icon target=_blank><img src=discord-icon.png alt=Discord></a></div><div class=animated-clock></div></div></div><script async src=script.min.js></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rice</title>
+    <link href=styles.css rel=stylesheet>
+    <style>
+        .info-box {
+            color: black;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #song-info {
+            background-color: rgba(255, 255, 255, 0.425);
+            /* Cinza semi-transparente */
+            border-radius: 15px;
+            /* Bordas arredondadas */
+            backdrop-filter: blur(5px);
+            /* Efeito de desfoque */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            text-align: center;
+            margin-top: 20px;
+            display: flex;
+            /* Itens na horizontal */
+            flex-direction: row;
+            /* Itens na horizontal */
+            justify-content: space-around;
+            /* Espaço igual entre os itens */
+            align-items: center;
+        }
+
+        #album-art {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+
+        #song,
+        #artist,
+        #duration,
+        #progress {
+            margin: 0;
+            font-size: 14px; /* Reduzindo o tamanho da fonte */
+            color: black;
+        }
+        #song-info {
+            padding-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-box">
+            <img src="sua-foto.jpg" alt="Imagem de Perfil">
+            <div class="info-box">
+                <h1>Rice</h1>
+            </div>
+        </div>
+        <div class="social-box">
+            <a href="https://twitter.com/riccenoob" class="rounded-icon" target="_blank"><img src="twitter-icon.png" alt="Twitter"></a>
+            <a href="https://ricethedev.itch.io" class="rounded-icon" target="_blank"><img src="itch-io-icon.png" alt="Itch.io"></a>
+            <a href="https://github.com/ricethedev" class="rounded-icon" target="_blank"><img src="github-icon.png" alt="GitHub"></a>
+            <a href="https://solo.to/ricethedev" class="rounded-icon" target="_blank"><img src="solo-to-icon.png" alt="Solo.to"></a>
+            <a href="https://www.youtube.com/@ricenoob" class="rounded-icon" target="_blank"><img src="youtube-icon.png" alt="YouTube"></a>
+            <a href="https://discord.gg/" class="rounded-icon" target="_blank"><img src="discord-icon.png" alt="Discord"></a>
+        </div>
+        <div id="song-info">
+            <img id="album-art" src="" alt="Capa do álbum">
+            <div>
+                <p id="song"></p>
+                <p id="artist"></p>
+                <p id="duration"></p>
+                <p id="progress"></p>
+            </div>
+        </div>
+        <div class="animated-clock"></div>
+    </div>
+<script>
+
+    // Sua chave da API do Last.fm
+    const lastFmApiKey = 'c38115c61c190a4fa11b612129d70ebd';
+
+    // Sua chave de acesso do Spotify
+    const spotifyAccessToken = 'BQD7INHzH2-JszeUTTxpTgH0OnxUvyeLkNiCWuCRbO1BM0ZquRULZTX3f2ARF40KJH5Vpa5TTVX2uq99yYE8hcrWGj1I-7HVCEqD5RYf1fqchVSzH1g';
+
+    // Função para buscar a música atualmente ouvida no Last.fm
+    async function getNowPlaying() {
+        try {
+            // Fazer solicitação à API do Last.fm
+            const response = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=Rice_Dev&api_key=${lastFmApiKey}&format=json`);
+            const data = await response.json();
+
+            // Verificar se há faixas recentes
+            if (data.recenttracks.track.length > 0) {
+                // Obter informações da última faixa reproduzida
+                const track = data.recenttracks.track[0];
+                const artist = track.artist['#text'];
+                const song = track.name;
+                const duration = track.duration;
+
+                // Exibir as informações da música no HTML
+                document.getElementById('song').textContent = `Current Music: ${song}`;
+                document.getElementById('artist').textContent = `Artist: ${artist}`;
+                document.getElementById('duration').textContent = ``;
+
+                // Exibir o tempo atual da música, se disponível
+                let progress = '';
+                if (track['@attr'] && track['@attr'].nowplaying && track.date) {
+                    progress = 'Atual: ' + formatTime(Math.floor((new Date().getTime() - new Date(track.date.uts * 1000).getTime()) / 1000));
+                }
+                document.getElementById('progress').textContent = progress;
+
+                // Buscar a imagem do álbum no Spotify
+                const albumArtUrl = await getAlbumArt(artist, song);
+                document.getElementById('album-art').src = albumArtUrl;
+            } else {
+                throw new Error('Nenhuma faixa recente encontrada.');
+            }
+        } catch (error) {
+            console.error('Erro ao buscar música atual do Last.fm:', error);
+            document.getElementById('song-info').textContent = 'Erro ao buscar música atual.';
+        }
+    }
+
+    // Função para buscar a imagem do álbum no Spotify
+    async function getAlbumArt(artist, song) {
+        try {
+            // Fazer solicitação à API do Spotify para buscar o ID da faixa
+            const response = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(song)}+artist:${encodeURIComponent(artist)}&type=track`, {
+                headers: {
+                    'Authorization': `Bearer ${spotifyAccessToken}`
+                }
+            });
+            const data = await response.json();
+            const trackId = data.tracks.items[0].id;
+
+            // Fazer solicitação à API do Spotify para buscar a imagem do álbum
+            const responseAlbum = await fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
+                headers: {
+                    'Authorization': `Bearer ${spotifyAccessToken}`
+                }
+            });
+            const dataAlbum = await responseAlbum.json();
+            const albumArtUrl = dataAlbum.album.images[0].url;
+
+            return albumArtUrl;
+        } catch (error) {
+            console.error('Erro ao buscar imagem do álbum no Spotify:', error);
+            return 'https://via.placeholder.com/300'; // Usar uma imagem de substituição se houver um erro
+        }
+    }
+
+    // Função para formatar o tempo em mm:ss
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    }
+
+    // Atualizar a música a cada segundo
+    setInterval(getNowPlaying, 1000);
+
+    // Chamada da função para buscar a música atual ao carregar a página
+    document.addEventListener('DOMContentLoaded', getNowPlaying);
+</script>
+    <script async src=script.min.js></script>
+</body>
+</html>
