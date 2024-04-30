@@ -94,11 +94,8 @@
 <script>
 
     // Sua chave da API do Last.fm
-    const lastFmApiKey = 'c38115c61c190a4fa11b612129d70ebd';
-
-    // Sua chave de acesso do Spotify
-    const spotifyAccessToken = 'BQD7INHzH2-JszeUTTxpTgH0OnxUvyeLkNiCWuCRbO1BM0ZquRULZTX3f2ARF40KJH5Vpa5TTVX2uq99yYE8hcrWGj1I-7HVCEqD5RYf1fqchVSzH1g';
-
+    const lastFmApiKey = '{{ secrets.LAST_FM_API_KEY }}';
+        const spotifyAccessToken = '{{ secrets.SPOTIFY_ACCESS_TOKEN }}';
     // Função para buscar a música atualmente ouvida no Last.fm
     async function getNowPlaying() {
         try {
