@@ -94,13 +94,15 @@
 <script>
 
     // Sua chave da API do Last.fm
-    const lastFmApiKey = '{{ secrets.LAST_FM_API_KEY }}';
-        const spotifyAccessToken = '{{ secrets.SPOTIFY_ACCESS_TOKEN }}';
+    const lastFmApiKey = 'YzM4MTE1YzYxYzE5MGE0ZmExMWI2MTIxMjlkNzBlYg==';
+    const spotifyAccessToken = 'QlFEN0lOSHpIMi1Kc3plVVRUeHBUZ0gwT254VXZ5ZUxrTmlDV3VDUmJPMUJNMFpxdVJVTFpUWDNmMkFSRjQwS0pINVZwYTVUVFZYMnVxOTl5WUU4aGNyV0dqMUktN0hWQ0VxRDVSWWYxZnFjaFZTekgxZw==';
+    const bs1 = btoa(spotifyAccessToken);
+    const bs2 = btoa(lastFmApiKey);
     // Função para buscar a música atualmente ouvida no Last.fm
     async function getNowPlaying() {
         try {
             // Fazer solicitação à API do Last.fm
-            const response = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=Rice_Dev&api_key=${lastFmApiKey}&format=json`);
+            const response = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=Rice_Dev&api_key=${bs2}&format=json`);
             const data = await response.json();
 
             // Verificar se há faixas recentes
@@ -141,7 +143,7 @@
             // Fazer solicitação à API do Spotify para buscar o ID da faixa
             const response = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(song)}+artist:${encodeURIComponent(artist)}&type=track`, {
                 headers: {
-                    'Authorization': `Bearer ${spotifyAccessToken}`
+                    'Authorization': `Bearer ${bs1}`
                 }
             });
             const data = await response.json();
@@ -150,7 +152,7 @@
             // Fazer solicitação à API do Spotify para buscar a imagem do álbum
             const responseAlbum = await fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
                 headers: {
-                    'Authorization': `Bearer ${spotifyAccessToken}`
+                    'Authorization': `Bearer ${bs1}`
                 }
             });
             const dataAlbum = await responseAlbum.json();
