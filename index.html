@@ -25,7 +25,7 @@
             justify-content: center;
         }
         #song-info {
-            background-color: rgba(255, 255, 255, 0.423);
+            background-color: rgba(82, 82, 82, 0.322);
             /* Cinza semi-transparente */
             border-radius: 15px;
             /* Bordas arredondadas */
@@ -45,12 +45,12 @@
         }
 
         #album-art {
-            width: 60px;
+            width: 0px;
             height: 60px;
             border-radius: 8px;
-            margin-right: 10px;
+            margin-right: 1px;
         }
-
+        #abovesong,
         #song,
         #artist,
         #duration,
@@ -67,7 +67,7 @@
 <body>
     <div class="container">
         <div class="profile-box">
-            <img src="sua-foto.jpg" alt="Imagem de Perfil">
+            <img src="pfp.jpg" alt="Imagem de Perfil">
             <div class="info-box">
                 <h1>Rice</h1>
             </div>
@@ -83,6 +83,7 @@
         <div id="song-info">
             <img id="album-art" src="" alt="Capa do álbum">
             <div>
+                <p id="abovesong"></p>
                 <p id="song"></p>
                 <p id="artist"></p>
                 <p id="duration"></p>
@@ -94,15 +95,12 @@
 <script>
 
     // Sua chave da API do Last.fm
-    const asn = 'c38115c61c190a4fa11b612129d70eb';
-    const spn = 'BQC6jWIPQ2M9my1_VIK16rKfsBJNPoiYbCmP_U3f3pFDPP2bKKHK3mZfG3DV-t0iKeTv41I5V5tZ6fTFv6r-6i2vdMk8tuC2gm3wqZoTHOzM2em9itI';
-    const bs1 = spn;
-    const bs2 = asn;
+    const asn = atob('YjU5YTc5MzZlZmJkNjk0ZWI0MmVkMTAyYmRlZjEzNjA=');
     // Função para buscar a música atualmente ouvida no Last.fm
     async function getNowPlaying() {
         try {
             // Fazer solicitação à API do Last.fm
-            const response = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=Rice_Dev&api_key=${bs2}&format=json`);
+            const response = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=Rice_Dev&api_key=${asn}&format=json`);
             const data = await response.json();
 
             // Verificar se há faixas recentes
@@ -114,55 +112,24 @@
                 const duration = track.duration;
 
                 // Exibir as informações da música no HTML
-                document.getElementById('song').textContent = `Current Music: ${song}`;
-                document.getElementById('artist').textContent = `Artist: ${artist}`;
+                document.getElementById('abovesong').textContent = `Music that I'm listening to:`
+                document.getElementById('song').textContent = `${song} - ${artist}`;
+                document.getElementById('artist').textContent = ``;
                 document.getElementById('duration').textContent = ``;
 
                 // Exibir o tempo atual da música, se disponível
-                let progress = '';
-                if (track['@attr'] && track['@attr'].nowplaying && track.date) {
-                    progress = 'Atual: ' + formatTime(Math.floor((new Date().getTime() - new Date(track.date.uts * 1000).getTime()) / 1000));
-                }
-                document.getElementById('progress').textContent = progress;
-
-                // Buscar a imagem do álbum no Spotify
-                const albumArtUrl = await getAlbumArt(artist, song);
-                document.getElementById('album-art').src = albumArtUrl;
-            } else {
-                throw new Error('Nenhuma faixa recente encontrada.');
             }
         } catch (error) {
-            console.error('Erro ao buscar música atual do Last.fm:', error);
-            document.getElementById('song-info').textContent = 'Erro ao buscar música atual.';
+            console.error('Nothing');
+            const element = document.getElementById("song-info");
+            element.remove();
+
         }
     }
 
     // Função para buscar a imagem do álbum no Spotify
     async function getAlbumArt(artist, song) {
-        try {
-            // Fazer solicitação à API do Spotify para buscar o ID da faixa
-            const response = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(song)}+artist:${encodeURIComponent(artist)}&type=track`, {
-                headers: {
-                    'Authorization': `Bearer ${bs1}`
-                }
-            });
-            const data = await response.json();
-            const trackId = data.tracks.items[0].id;
-
-            // Fazer solicitação à API do Spotify para buscar a imagem do álbum
-            const responseAlbum = await fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
-                headers: {
-                    'Authorization': `Bearer ${bs1}`
-                }
-            });
-            const dataAlbum = await responseAlbum.json();
-            const albumArtUrl = dataAlbum.album.images[0].url;
-
-            return albumArtUrl;
-        } catch (error) {
-            console.error('Erro ao buscar imagem do álbum no Spotify:', error);
-            return 'https://via.placeholder.com/300'; // Usar uma imagem de substituição se houver um erro
-        }
+        return 'https://cdn.discordapp.com/attachments/1237437935637495909/1239381374692098058/image.png?ex=6642b75a&is=664165da&hm=6ca8d69ea91102b2673aa398ccd4b47cdb18451aba77830c62569b5679824fbb&'; // Usar uma imagem de substituição se houver um erro
     }
 
     // Função para formatar o tempo em mm:ss
