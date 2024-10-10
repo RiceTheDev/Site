@@ -6,16 +6,10 @@ body{
 
 #bg{
     position: fixed;
-    top: 0;
-    left: 0; 
-    width: 100vw; 
-    height: 100vh;
-    background: url(ee46cc3b6988057d435be7e391472d46f278d87a.jpg) no-repeat center center; /* Wallpaper by WallpaperCave(https://wallpapercave.com) */
-    filter: blur(0px);
-    transform:scale(101%, 101%);
-    z-index: -1;
-    image-rendering: pixelated;
-
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 #main{
@@ -30,12 +24,18 @@ body{
     transform: translate(-50%, -80%);   
     scale: 80%;
     box-shadow: 8px 9px 31px 0px rgba(0,0,0,0.75);
--webkit-box-shadow: 8px 9px 31px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 8px 9px 31px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 8px 9px 31px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 8px 9px 31px 0px rgba(0,0,0,0.75);
 }
-
-#main img{
-    transform: scale(80%);
+#avatar {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    height: 50%;
+    width: 50%;
+    transform: translate(-50%, -70%);   
+}
+#youtubeicn, #discordicn, #moldure{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -56,7 +56,7 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-43%, 120%);
-    border-radius: 10px;
+    border-radius: 30px;
     background-color: rgba(0, 0, 0, 0.61);
     backdrop-filter: blur(5px);
     width: 480px;
