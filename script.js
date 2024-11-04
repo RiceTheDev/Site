@@ -1,7 +1,7 @@
 let dataObject;
 
 setInterval(function() {
-    fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=Rice_Dev&api_key=${atob("NjdkNTM2MDM2NGJlNGEyNTE2YjBkYzdhNTRjNmRiMjM=")}&format=json`)
+    fetch(`https://api-itchio.onrender.com/`)
     .then(response => response.json())
     .then(data => {
 dataObject = data;
