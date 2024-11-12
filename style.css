@@ -13,6 +13,8 @@ body{
 }
 
 #main{
+        border: 2px solid rgba(255, 255, 255, 0.288);
+
     background-color: rgba(0, 0, 0, 0.61);
     width: 300px;
     backdrop-filter: blur(5px);
@@ -52,6 +54,8 @@ body{
 }
 
 #track{
+        border: 2px solid rgba(255, 255, 255, 0.288);
+
     position: absolute;
     top: 50%;
     left: 50%;
@@ -67,6 +71,7 @@ body{
 }
 
 #track img{
+    
     height: 70px;
     padding: 25px;
     border-radius: 20px;
@@ -78,12 +83,18 @@ body{
     left: 110px;   
 }
 #youtubeicn{
-    scale: 45%;
-    padding-top: 180px;
-    padding-left: 110px;
+    position: absolute;
+    width: 30%;
+    height: 30%;
+    top: 50%;
+    left: 50%;
+    transform: translate(50%, 57%);
 }
 #discordicn{
-    scale: 45%;
-    padding-top: 180px;
-    margin-left: -155px;
+    width: 30%;
+    height: 30%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-155%, 55%);
 }
