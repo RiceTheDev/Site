@@ -1,7 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@font-face {
+    font-family: Tahoma;
+    src: url("Tahoma\ Regular\ font.woff2");
+}
 
-body{
-    font-family: "poppins";
+body {
+    font-family: Tahoma;
+    cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAgMAAAAOFJJnAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAlQTFRFAAAAAAAA////g93P0gAAAAN0Uk5T/wD/aewfvgAAAFpJREFUeJxjFHVgAANG1gAoQ9EEytDQhTK0XjtAGdEXoIzyLVBG3VoooyHbAcq4fQHCKEsMgZhTCVWsyK4LtUsZyhA1PQ3RFfoVxvhrfAGN8f8gVIoB6h46MgCudBzBJW3EcgAAAABJRU5ErkJggg==), default;
+}
+
+button:hover {
+    cursor: url('link.cur'), progress !important;
 }
 
 #bg{
@@ -13,19 +21,13 @@ body{
 }
 
 #main{
-    background-color: rgba(0, 0, 0, 0.61);
     width: 300px;
     backdrop-filter: blur(5px);
     height: 300px;
     position: absolute;
-    border-radius: 20px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -80%);   
-    scale: 80%;
-    box-shadow: 8px 9px 31px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 8px 9px 31px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 8px 9px 31px 0px rgba(0,0,0,0.75);
 }
 #avatar {
     position: absolute;
@@ -35,55 +37,51 @@ body{
     width: 50%;
     transform: translate(-50%, -70%);   
 }
-#youtubeicn, #discordicn, #moldure{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 60%;
-    width: 60%;
-    transform: translate(-50%, -70%);   
-}
+
 
 #main h2{
-    color: white;
-    padding-top: 210px;
+    color: rgb(0, 0, 0);
+    padding-top: 175px;
+    font-size: 28px;
     text-align: center;
-    font-family: 'Poppins';
+    font-family: Tahoma;
 }
 
 #track{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-43%, 120%);
-    border-radius: 30px;
-    background-color: rgba(0, 0, 0, 0.61);
-    backdrop-filter: blur(5px);
+    transform: translate(-50%, 120%);
     width: 480px;
     height: 120px;
-    box-shadow: 8px 9px 31px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 8px 9px 31px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 8px 9px 31px 0px rgba(0,0,0,0.75);
 }
 
 #track img{
+    
     height: 70px;
-    padding: 25px;
-    border-radius: 20px;
+    padding-left: 5px;
 }
 
 #musicname{
     position: absolute;
-    top: 13px;
-    left: 110px;   
+    top: 30px;
+    left: 90px;
 }
 #youtubeicn{
-    scale: 45%;
-    padding-top: 180px;
-    padding-left: 110px;
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    padding: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(55%, 57%);
 }
 #discordicn{
-    scale: 45%;
-    padding-top: 180px;
-    margin-left: -155px;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 20px;
+    transform: translate(-155%, 55%);
 }
