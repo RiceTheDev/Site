@@ -14,7 +14,7 @@ setInterval(function() {
                 );
             } else {
                 if (activity.name === "Spotify") {
-                    document.getElementById('musicname').innerHTML = `${activity.name}<br>${dataObject.data.spotify.album} - ${activity.state || activity.details}`;
+                    document.getElementById('musicname').innerHTML = `${activity.name} - ${activity.details}<br>${dataObject.data.spotify.album} - ${activity.state || activity.details}`;
                     const img = dataObject.data.spotify.album_art_url;
                     document.getElementById('musicimage').setAttribute('src', img);
                 } else {
@@ -33,3 +33,4 @@ setInterval(function() {
             }
         });
 }, 5000);
+
