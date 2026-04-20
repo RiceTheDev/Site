@@ -1,0 +1,87 @@
+@font-face {
+    font-family: Tahoma;
+    src: url("assets/tahoma.woff2");
+}
+
+body {
+    font-family: Tahoma;
+    cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAgMAAAAOFJJnAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAlQTFRFAAAAAAAA////g93P0gAAAAN0Uk5T/wD/aewfvgAAAFpJREFUeJxjFHVgAANG1gAoQ9EEytDQhTK0XjtAGdEXoIzyLVBG3VoooyHbAcq4fQHCKEsMgZhTCVWsyK4LtUsZyhA1PQ3RFfoVxvhrfAGN8f8gVIoB6h46MgCudBzBJW3EcgAAAABJRU5ErkJggg==), default;
+}
+
+button:hover {
+    cursor: url('assets/link.cur'), progress !important;
+}
+
+#bg{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+#main{
+    width: 300px;
+    backdrop-filter: blur(5px);
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%);   
+}
+#avatar {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    height: 50%;
+    width: 50%;
+    transform: translate(-50%, -70%);   
+}
+
+
+#main h1 {
+    color: rgb(0, 0, 0);
+    padding-top: 175px;
+    font-size: 28px;
+    text-align: center;
+    font-family: Tahoma;
+}
+
+#track{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 120%);
+    width: 480px;
+    height: 120px;
+}
+
+#track img{
+    
+    height: 70px;
+    padding-left: 5px;
+}
+
+#musicname{
+    position: absolute;
+    top: 30px;
+    left: 90px;
+}
+#youtubeicn{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    padding: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(55%, 57%);
+}
+#discordicn{
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 20px;
+    transform: translate(-155%, 55%);
+}
